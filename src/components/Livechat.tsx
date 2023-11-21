@@ -68,7 +68,7 @@ const Livechat: React.FC = () => {
         Live Chat
       </p>
       <div  ref={messagesContainerRef}
-      className="flex-1 p-1 overflow-y-auto hover:bg-blue-400 ">
+      className="flex-1 p-1 overflow-y-auto  hover:bg-blue-400 max-h-[30vh] flex-grow ">
         {messages.map((message, index) => (
           <div key={index} className="flex mb-2">
             <img

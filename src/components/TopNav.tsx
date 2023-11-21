@@ -8,7 +8,7 @@ type TopNavProps = {
 const TopNav = ({ isOpen, setIsOpen }: TopNavProps) => {
   return (
     <nav className="flex items-center h-24 px-6 z-10 fixed bg-white w-full">
-      <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl xl:text-6xl truncate">
+      <h1 className="text-4xl font-bold   truncate">
         Reach Industries Frontend Assessment.
       </h1>
 
