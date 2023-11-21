@@ -1,6 +1,6 @@
 # Reach
 Reach Industries Frontend Assessment
- 00d518135e468c093175a7b4646e9f63dd1d32a4
+
 
 # Libraries Used
 - clsx - This library was used in my SideNav.tsx file for the Sidebar. It was a great help to be able to open and close the side bar conditionally based on the state of the boolean prop "isOpen".  
