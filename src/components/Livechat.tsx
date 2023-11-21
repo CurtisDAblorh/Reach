@@ -6,7 +6,7 @@ const Livechat: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>(""); //state variable to store the value of the input field
   const [ws, setWs] = useState<WebSocket | null>(null); //state to hold the websocket connection
   const [currentTime, setCurrentTime] = useState<string[]>([]);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   type UserData = {
     name: string;
@@ -53,17 +53,22 @@ const Livechat: React.FC = () => {
   }; //send messages via websocket - checks if ws is not null and then removes empty space and checks the value is not null then sends the input value and sets new input to empty string
 
   const scrollToBottom = () => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   };
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]); // Scroll when new messages arrive
+
   return (
-    <div className="bg-slate-300 flex flex-col max-h-max rounded-md border-2 border-white-600 w-96 ">
+    <div className=" md:ml-4 bg-slate-300 flex flex-col max-h-max rounded-md border-2 border-white-600 w-96 ">
       <p className="rounded-t-md bg-slate-400/[0.5] border-b-2 font-bold text-lg p-4  hover:bg-blue-400">
         Live Chat
       </p>
-      <div className="flex-1 p-1 overflow-y-auto hover:bg-blue-400">
+      <div  ref={messagesContainerRef}
+      className="flex-1 p-1 overflow-y-auto hover:bg-blue-400 ">
         {messages.map((message, index) => (
           <div key={index} className="flex mb-2">
             <img
@@ -78,9 +83,9 @@ const Livechat: React.FC = () => {
             </div>
           </div>
         ))}
-        <div ref={messagesEndRef} />{" "}
-      </div>{" "}
-      {/*empty div that scrolls to bottom with useRef*/}
+        
+      </div>
+      
       <div className="flex items-center p-2">
         <input
           type="text"
